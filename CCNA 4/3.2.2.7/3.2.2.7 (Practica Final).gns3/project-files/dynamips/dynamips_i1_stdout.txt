@@ -1,0 +1,12 @@
+cygwin warning:
+  MS-DOS style path detected: D:\Yo\Certificaciones\CCENT - CCNA\Practicas Curso CCNA\CCNA 4\3.2.2.7\3.2.2.7 (Practica Final).gns3\project-files\dynamips
+  Preferred POSIX equivalent is: /cygdrive/d/Yo/Certificaciones/CCENT - CCNA/Practicas Curso CCNA/CCNA 4/3.2.2.7/3.2.2.7 (Practica Final).gns3/project-files/dynamips
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames
+VM: Unable to store instance 'Ghost' in registry!
+VM Ghost: unable to create instance!
+% No memory map for code execution at 0x0
+% Unable to create instruction block for vaddr=0x0
+insn_page_compile: unable to create JIT block.
+VM 'Cust1': unable to compile block for CPU0 PC=0x0
