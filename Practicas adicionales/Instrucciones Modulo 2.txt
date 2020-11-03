@@ -1,0 +1,186 @@
+La empresa CCNA.com tiene 3 Sedes
+
+Sede Norte (Color Amarillo)
+Sede Central (Color Azul)
+Sede Sur (Color Rojo)
+
+
+
+
+Se le ha contratado a Uds para poner en marcha un proyecto de configuracion de servicios y de resolucion de problemas
+ para devolver la operatividad de la empresa CCNA.com
+
+
+El proyecto se implementara por sede
+
+
+
+
+
+En la Sede Norte (Zona Amarilla) Se requiere:
+
+
+		Configurar un WLC para ofrecer conectividad inalambrica a los dispositivos moviles (Smartphones) controlada de forma centralizada.
+
+		El direccionamiento propuesto es:
+			
+			VLAN Gestion: VLAN1
+			IP Vlan Gestion: 172.16.100.0/28
+			IP Wlc: Ultima IP del rango
+
+
+			VLAN Invitados: VLAN10
+			Ip Vlan 10: 172.16.100.16/28
+			WLAN Invitados: SSID Invitados
+			Seguridad: WPA2
+	
+
+			Vlan Usuarios: VLAN20
+			Ip Vlan 20: 172.16.100.32/28
+			WLAN Usuarios: SSID Usuarios
+			
+		
+		
+Crear 2 Grupos de AP
+			
+	Grupo 1: Debe emitir los SSID Invitados - Usuarios
+		
+	Grupo 2: Debe emitir el SSID Usuarios
+		
+		
+
+Los Dispositivos conectados a casa SSID debe recibir direccionamiento IP del servidor DHCP que debe ser configurado en el Router(R.Norte)
+		
+Se deben excluir las direcciones ip que van a ser asignadas a las interfaces y dispositivos.			
+			
+
+
+
+
+
+En la Sede Central (Zona Azul)
+	Se requiere:
+	
+		
+
+		Crear 3 VLAN:
+			
+			VLAN 10: IP 192.168.10.0/24
+	
+			VLAN 20: IP 192.168.20.0/24
+	
+			VLAN 30: IP 192.168.30.0/24 NATIVA
+		
+		
+
+Configurar Rapid PVST.
+Configurar RPVST con los siguientes parametros.
+	
+			MLS 1 Sera el Root Bridge para los dispositivos de la VLAN10
+		
+			MLS 1 Sera el Secondary Root para los dispositivos de la VLAN20	
+
+				
+			MLS 2 Sera el Root Bridge para los dispositivos de la VLAN20
+				
+			MLS 2 Sera el Secondary Root para los dispositivos de la VLAN10
+			
+
+Se debe configurar HSRP
+		
+				
+		MLS1 Sera el router Activo para los dispositivos de la VLAN10
+	
+		MLS1 Sera el router Pasivo para los dispositivos de la VLAN20
+			
+		MLS2 Sera el router Activo para los dispositivos de la VLAN20
+			
+		MLS1 Sera el router Pasivo para los dispositivos de la VLAN10
+				
+			
+	La ip virtual para la VLan10 sera 192.168.10.1
+			
+	La ip virtual para la VLan20 sera 192.168.20.1
+				
+			
+	
+
+*Resolver los problemas que impiden el funcionamiento de los Etherchannel.
+			Los etherchannel se deben configurar de acuerdo a lo indicado en la topologia
+	
+
+		MLS1 Sera el servidor DHCP para los dispositivos de las distintas VLAN
+				
+		
+		Se debe configurar enrutamiento Inter-VLan
+		
+		Los dispositivos PC0(VLan10) y PC1(Vlan20) deben tener conectividad entre ellos
+	
+	
+
+Aplicar mecanismos de seguridad:
+			
+
+	Todas las interfaces de acceso del Sw Acceso (del 5 al 10) deben tener configurado el mecanismo para evitar que la interface pase por todos los estados de Spanning-tree
+
+	Todas las interfaces de acceso del Sw Acceso (del 5 al 10) deben tener configurado el mecanismo para prevenir que la interface reciba BPDU en caso de recibirlo la interface se colocara en modo err-disable.
+		
+	Las interfaces desde la 20 a la 24 deben permanecer apagadas y se deben asignar a la vlan 199
+	
+
+
+
+En la sede Sur (Zona Roja)
+
+		Se debe configurar:
+	
+
+		Enrutamiento entre VLAN 
+	
+		El servidor DHCP de los dispositivos esta configurado en el MLS2
+
+		El direccionamiento propuesto es:
+				
+			
+			VLAN100 Datos 	192.168.100.0/24
+
+			VLAN200 Gestion 192.168.200.0/24
+			
+			VLAN300 NAtiva 192.168.60.0/24
+
+
+		Aplicar Mecanismos de Seguridad
+	
+
+
+			Las Interfaces de los dispositivos de la VLAN100 deben permitir solo conexion de los dispositivos con Direcciones Mac
+configuradas de forma manual.
+	
+			Si existe una violacion de seguridad el puerto debe apagarse
+		
+
+			Las interfaces de los dispositivos de la VLAN200 deben aprender maximo 2 direcciones de forma dinamica y estas deben ser agregadas a la configuracion en ejecucion. 
+	
+			Si existe una violacion de seguridad el puerto debe apagarse
+			
+
+			Para evitar que un atacante pueda realizar ataques de DoS al servidor DHCP se debe configurar DHCP Snooping
+
+			Configurar los puertos Confiables
+	
+			Limitar los puertos no confiables a solo 6 paquetes p/s.
+	
+		
+	Para evitar ataques de suplantacion de indentidad se debe configurar DAI.
+	
+			
+Usando Enrutamiento estatico se debe establecer conectividad entre los dispositivos de las distintas zonas.
+
+
+
+				
+				
+				
+			
+			
+
